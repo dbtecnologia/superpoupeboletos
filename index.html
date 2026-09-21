@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestor de NF-e e Boletos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><div class="logo">SP</div><div><div class="eyebrow">SUPERMERCADO SUPERPOUPE · FINANCEIRO</div><h1>Gestor de NF-e e Boletos</h1><p>Recebimentos, vencimentos, valores e observações em um só painel.</p></div></div>
+    <div class="actions"><button id="importBtn" class="btn light">⇧ &nbsp;Importar Excel</button><button id="exportBtn" class="btn light">⇩ &nbsp;Exportar Excel</button><button id="templateBtn" class="btn light">▦ &nbsp;Modelo</button><button class="user">♙ &nbsp; DEVIDIBASTOS455</button><button class="iconbtn" title="Imprimir" onclick="window.print()">▣</button><button class="btn logout">↪ &nbsp;Sair</button><button id="newBtn" class="btn primary">＋ &nbsp;Novo lançamento</button></div>
+    <input id="fileInput" type="file" accept=".csv,.xlsx" hidden>
+  </header>
+  <main class="container">
+    <section class="cards"><div class="metric"><span>Emitido de NF-e (hoje)</span><strong id="nfToday">0</strong></div><div class="metric"><span>Qtd. de boletos (hoje)</span><strong id="boletoToday">0</strong></div><div class="metric"><span>Pendentes (todos os dias)</span><strong id="pendingCount">1</strong></div><div class="metric"><span>Vencem em 3 dias</span><strong id="dueSoon">0</strong></div></section>
+    <section class="alert"><div class="alert-title">♧ <b>Alerta de boletos pendentes com vencimento em até 3 dias</b><em id="alertCount">1</em><span id="alertTotal">R$ 500,00 a pagar</span></div><div id="alertItem" class="alert-item"><div><b>teste boleto sem nf</b><small>3/3 · venc. 05/08/2026 · R$ 500,00</small></div><span class="late">Atrasado 47 dia(s)</span><button class="link" onclick="openEdit(0)">Abrir</button></div></section>
+    <section class="filters"><div class="search"><span>⌕</span><input id="search" placeholder="Buscar por empresa, NF-e, boleto, responsável ou observação"></div><select id="status"><option value="">Todos os status</option><option>Pendente</option><option>Pago</option><option>NF-e</option></select><label>Lançado de<input id="from" type="date"></label><label>Lançado até<input id="to" type="date"></label><label>Vencimento de<input id="dueFrom" type="date"></label><label>Vencimento até<input id="dueTo" type="date"></label><button id="clear" class="clear">Limpar filtros</button></section>
+    <div class="table-head"><span id="shown">2 lançamento(s) exibido(s) · use a busca ou os filtros para refinar</span></div>
+    <div class="table-wrap"><table><thead><tr><th>Empresa</th><th>NF-e</th><th>Valor NF</th><th>Boletos citados</th><th>Recebimento</th><th>Vencimento</th><th>Valor</th><th>Status</th><th>Lançado por</th><th>Observações</th><th>Ações</th></tr></thead><tbody id="rows"></tbody></table></div><div class="total">Total exibido: <b id="total">R$ 1.000,00</b></div>
+  </main>
+  <dialog id="modal"><form method="dialog" id="form"><div class="modal-head"><h2>Novo lançamento</h2><button class="close">×</button></div><div class="form-grid"><label>Empresa<input name="company" required placeholder="Nome da empresa"></label><label>NF-e<input name="nfe" placeholder="Número da NF-e"></label><label>Valor NF<input name="nfValue" placeholder="R$ 0,00"></label><label>Boletos citados<input name="boletos" placeholder="Quantidade"></label><label>Recebimento<input name="receipt" type="date"></label><label>Vencimento<input name="due" type="date" required></label><label>Valor do boleto<input name="value" required placeholder="R$ 0,00"></label><label>Status<select name="status"><option>Pendente</option><option>Pago</option><option>NF-e</option></select></label><label class="wide">Responsável<input name="owner" value="DEVIDIBASTOS455"></label><label class="wide">Observações<textarea name="notes" rows="3"></textarea></label></div><div class="modal-actions"><button class="btn cancel">Cancelar</button><button class="btn primary" value="default">Salvar lançamento</button></div></form></dialog>
+  <script src="app.js"></script>
+</body></html>
