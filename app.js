@@ -3,3 +3,5 @@ const authBox=document.querySelector('#auth'),appContent=document.querySelector(
 document.querySelector('.logout').onclick=async()=>{const token=localStorage.getItem('sb_token');if(token)await fetch(authUrl('logout'),{method:'POST',headers:{...headers,Authorization:'Bearer '+token}});localStorage.removeItem('sb_token');showAuth()};
 showAuth=()=>{appContent.style.display='block'};showApp=()=>{appContent.style.display='block'};authBox.style.display='none';appContent.style.display='block';
 document.querySelector('.user').innerHTML='♙ &nbsp; Usuário';document.querySelector('[name="owner"]').value='';
+if(!localStorage.getItem('sb_token')){authBox.style.display='grid';appContent.style.display='none'}
+showAuth=()=>{authBox.style.display='grid';appContent.style.display='none'};showApp=()=>{authBox.style.display='none';appContent.style.display='block'};if(!localStorage.getItem('sb_token'))showAuth();
